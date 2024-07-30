@@ -25,6 +25,7 @@ export interface IAnimal {
   habitat: Habitat;
   nourriture: string;
   image: string;
+  description: string;
 }
 
 
@@ -37,6 +38,7 @@ export interface IAnimal {
  * @param {Habitat=} habitat - l'habitat de l'animal
  * @param {string=} nourriture - la principale nourriture de l'animal
  * @param {string=} image - l'url d'une image qui représente l'animal
+ * @param {string=} description - un brève text qui décrit l'animal
  * @param {number=} id - l'identifiant de l'animal dans la BD
  */
 function new_(
@@ -45,6 +47,7 @@ function new_(
   habitat?: Habitat,
   nourriture?: string, 
   image?: string,
+  description?: string,
   id?: number // id last cause usually set by db
 ): IAnimal {
   return {
@@ -53,7 +56,8 @@ function new_(
     espece: (espece ?? ''),
     habitat: (habitat ?? Habitat.AmériqueCentrale),
     nourriture: (nourriture ?? ''),
-    image: (image ?? '')
+    image: (image ?? ''),
+    description: (description?? '')
   };
 }
 
@@ -65,7 +69,7 @@ function from(param: object): IAnimal {
     throw new Error(INVALID_CONSTRUCTOR_PARAM);
   }
   const p = param as IAnimal;
-  return new_(p.nom, p.espece, p.habitat, p.nourriture, p.image, p.id);
+  return new_(p.nom, p.espece, p.habitat, p.nourriture, p.image, p.description, p.id);
 }
 
 /**
@@ -82,7 +86,8 @@ function isAnimal(arg: unknown): boolean {
     'espece' in arg && typeof arg.espece === 'string' &&
     'habitat' in arg && typeof arg.habitat === typeof Habitat &&
     'nourriture' in arg && typeof arg.nourriture === 'string' &&
-    'image' in arg && typeof arg.image === 'string'
+    'image' in arg && typeof arg.image === 'string' &&
+    'description' in arg && typeof arg.description === 'string'
   );
 }
 

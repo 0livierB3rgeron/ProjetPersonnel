@@ -2,8 +2,9 @@ import { Router } from 'express';
 import jetValidator from 'jet-validator';
 
 import Paths from '../common/Paths';
-import User from '@src/models/User';
-import UserRoutes from './UserRoutes';
+import Animal from '@src/models/Animal';
+import AnimalRoutes from './AnimalRoutes';
+
 
 
 // **** Variables **** //
@@ -14,37 +15,37 @@ const apiRouter = Router(),
 
 // ** Add UserRouter ** //
 
-const userRouter = Router();
+const animalRouter = Router();
+
 
 // Get all users
-userRouter.get(
-  Paths.Users.Get,
-  UserRoutes.getAll,
+animalRouter.get(
+  '/',
+  AnimalRoutes.getAll,
+);
+
+animalRouter.get(
+  Paths.Get,
+  AnimalRoutes.getOne,
 );
 
 // Add one user
-userRouter.post(
-  Paths.Users.Add,
-  validate(['user', User.isUser]),
-  UserRoutes.add,
+animalRouter.post(
+  Paths.Add,
+  //validate(['user', User.isUser]),
+  AnimalRoutes.add,
 );
 
-// Update one user
-userRouter.put(
-  Paths.Users.Update,
-  validate(['user', User.isUser]),
-  UserRoutes.update,
-);
 
 // Delete one user
-userRouter.delete(
-  Paths.Users.Delete,
+animalRouter.delete(
+  Paths.Delete,
   validate(['id', 'number', 'params']),
-  UserRoutes.delete,
+  AnimalRoutes.delete,
 );
 
 // Add UserRouter
-apiRouter.use(Paths.Users.Base, userRouter);
+apiRouter.use(Paths.Base, animalRouter);
 
 
 // **** Export default **** //
