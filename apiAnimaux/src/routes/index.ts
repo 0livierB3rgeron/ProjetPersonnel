@@ -18,18 +18,19 @@ const apiRouter = Router(),
 const animalRouter = Router();
 
 
-// Get all users
+// Get tout les animaux
 animalRouter.get(
   '/',
   AnimalRoutes.getAll,
 );
 
+// Get seulement un animal selon son nom
 animalRouter.get(
   Paths.Get,
   AnimalRoutes.getOne,
 );
 
-// Add one user
+// Ajouter un animal
 animalRouter.post(
   Paths.Add,
   //validate(['user', User.isUser]),
@@ -37,14 +38,13 @@ animalRouter.post(
 );
 
 
-// Delete one user
+// Delete un animal selon son ID
 animalRouter.delete(
   Paths.Delete,
   validate(['id', 'number', 'params']),
   AnimalRoutes.delete,
 );
 
-// Add UserRouter
 apiRouter.use(Paths.Base, animalRouter);
 
 

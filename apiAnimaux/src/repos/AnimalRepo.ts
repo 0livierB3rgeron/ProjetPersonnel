@@ -49,11 +49,11 @@ async function GetById(animalId: number): Promise<IAnimal| undefined> {
  * Permet de trouver un seul animal dans la bd selon son ID
  * Auteur: Olivier Bergeron
  *
- * @param id de l'animal à trouver
+ * @param animalName le nom de l'animal à trouver
  * @return L'animal trouver <IAnimal>
  */
 async function GetByName(animalName: string): Promise<IAnimal| undefined> {
-	console.log(animalName);
+	
 	if (animalName == "" || animalName == null) {
 		throw new Error("Nom vide");
 	}
@@ -134,11 +134,11 @@ async function GetAll(): Promise<IAnimal[]| undefined> {
  * @param animal le model d'un animal
  * @return le nouvel animal créé
  */
-async function Insert(animal: { animal: IAnimal }): Promise<IAnimal | undefined> {
+async function Insert(animal:  IAnimal ): Promise<IAnimal | undefined> {
 	const query =  "INSERT INTO animaux (nom, espece, habitat, nourriture, image, description) VALUES(:nom, :espece, :habitat, :nourriture, :image, :description)";
 	
 	
-	const params = {nom: animal.animal.nom, espece: animal.animal.espece, habitat: animal.animal.habitat, nourriture: animal.animal.nourriture, image: animal.animal.image, description: animal.animal.description};
+	const params = {nom: animal.nom, espece: animal.espece, habitat: animal.habitat, nourriture: animal.nourriture, image: animal.image, description: animal.description};
 	try{
 		let [resultat] = await connection.promise().execute<ResultSetHeader>(query, params);
 		
@@ -160,8 +160,9 @@ async function Delete(animalId: number): Promise<boolean>{
 		return false
 	}
 	
-	const query = "DELETE FROM animaux WHERE id = ?"
+	const query = "DELETE FROM animaux WHERE id = ?;"
 	const param = {animalId};
+	console.log(param)
 
 	try{
 		let [resultat] = await connection.promise().execute<ResultSetHeader>(query, param);

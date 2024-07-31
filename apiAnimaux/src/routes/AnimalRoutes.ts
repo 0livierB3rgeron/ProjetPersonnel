@@ -28,7 +28,7 @@ async function getOne(req: IReq<{nom: string}>, res: IRes) {
 /**
  * Ajouter un animal.
  */
-async function add(req: IReq<{animal: {animal: IAnimal}}>, res: IRes) {
+async function add(req: IReq<{animal: IAnimal}>, res: IRes) {
   const { animal } = req.body;
   await AnimalService.addOne(animal);
   return res.status(HttpStatusCodes.CREATED).end();

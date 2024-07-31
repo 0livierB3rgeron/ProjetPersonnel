@@ -30,7 +30,7 @@ function getOne(nom: string): Promise<IAnimal |  undefined> {
 /**
  * Ajoute un animal.
  */
-function addOne(animal: {animal : IAnimal}): Promise<IAnimal | undefined> {
+function addOne(animal:  IAnimal): Promise<IAnimal | undefined> {
   return AnimalRepo.Insert(animal);
 }
 
