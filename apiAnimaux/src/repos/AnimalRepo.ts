@@ -87,7 +87,48 @@ async function GetByName(animalName: string): Promise<IAnimal| undefined> {
 	return animal;
 }
 
+/**
+ * Permet de retrouver les animaux favoris
+ * Auteur: Olivier Bergeron
+ *
+ * @param animalName le nom de l'animal à trouver
+ * @return L'animal trouver <IAnimal>
+ */
+async function GetByFavoris(): Promise<IAnimal[]| undefined> {
+	
 
+	
+	let animaux: IAnimal[] | undefined = [];
+	
+	const query = "SELECT * FROM animaux WHERE favoris = true;";
+	
+	try{
+		//Execute la requête à la bd
+		let [resultat] = await connection.promise().execute<RowDataPacket[]>(query);
+
+		//Vérification s'il y a bien des résultats
+		if(resultat && resultat.length > 0){
+			resultat.forEach((result =>{
+				
+				animaux?.push({
+					id: result.id,
+					nom: result.nom,
+					espece: result.espece,
+					habitat: result.habitat,
+					nourriture: result.nourriture,
+					image: result.image,
+					description: result.description,
+					favoris: result.favoris
+				});
+			}));
+
+		}
+	}catch (erreur) {
+		throw new Error(erreur.toString());
+	}
+	
+	return animaux;
+}
 
 
 
@@ -101,7 +142,7 @@ async function GetByName(animalName: string): Promise<IAnimal| undefined> {
  */
 async function GetAll(): Promise<IAnimal[]| undefined> {
 	let animaux: IAnimal[] | undefined = [];
-	const query = "SELECT * FROM animaux ORDER BY nom DESC;";
+	const query = "SELECT * FROM animaux WHERE favoris = false ORDER BY nom DESC;";
 	try{
 		//Execute la requête à la bd
 		let [resultat] = await connection.promise().execute<RowDataPacket[]>(query);
@@ -157,7 +198,9 @@ async function Insert(animal:  IAnimal ): Promise<IAnimal | undefined> {
 
 
 async function Update(animal:  IAnimal ): Promise<IAnimal | undefined> {
-	const query =  "UPDATE animaux SET favrois = :favrois WHERE nom = :nom";
+	
+	
+	const query =  "UPDATE animaux SET favoris = :favoris WHERE nom = :nom";
 	
 	
 	const params = {favoris: animal.favoris, nom: animal.nom};
@@ -202,6 +245,7 @@ export default {
     GetAll,
 	GetById,
 	GetByName,
+	GetByFavoris,
 	Insert,
 	Delete,
 	Update

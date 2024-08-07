@@ -2,9 +2,7 @@ import { Router } from 'express';
 import jetValidator from 'jet-validator';
 
 import Paths from '../common/Paths';
-import Animal from '@src/models/Animal';
 import AnimalRoutes from './AnimalRoutes';
-import path from 'path';
 
 
 
@@ -19,10 +17,16 @@ const apiRouter = Router(),
 const animalRouter = Router();
 
 
-// Get tout les animaux
+// Get tout les animaux.
 animalRouter.get(
   '/',
   AnimalRoutes.getAll,
+);
+
+// Get tout les animaux favoris.
+animalRouter.get(
+  Paths.GetFavoris,
+  AnimalRoutes.getAllFavoris,
 );
 
 // Get seulement un animal selon son nom
@@ -34,7 +38,6 @@ animalRouter.get(
 // Ajouter un animal
 animalRouter.post(
   Paths.Add,
-  //validate(['user', User.isUser]),
   AnimalRoutes.add,
 );
 

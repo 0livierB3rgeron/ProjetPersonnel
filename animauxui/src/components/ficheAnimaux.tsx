@@ -1,18 +1,39 @@
 import { Badge, Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
 import { IAnimal } from "../models/animal";
 import axios from "axios";
-import Popup from "reactjs-popup";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import 'reactjs-popup/dist/index.css';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useState } from "react";
+
 
 interface IFicheAnimal{
     animal: IAnimal
 }
 
+
+
 export default function FicheAnimaux(props: IFicheAnimal){
 
-   
+   const handleFavorite = () =>{
+    axios.put('http://127.0.0.1:3000/animal/favoris',{
+        "animal": {
+            "nom": props.animal.nom,
+            "espece": props.animal.espece,
+            "habitat": props.animal.habitat,
+            "nourriture": props.animal.nourriture,
+            "image": props.animal.image,
+            "description": props.animal.description,
+            "favoris": true
+        }
+    })
+    .then((response) => {
+        window.location.reload();
+    })
+    .catch(error =>{
+        console.error(error);
+    })
+   }
+
 
     const handleDelete = () => {
         axios.delete('http://127.0.0.1:3000/animal/delete/' + props.animal.id)
@@ -33,7 +54,7 @@ export default function FicheAnimaux(props: IFicheAnimal){
     
     return(
         
-        <Card sx={{ width: 300,  height: 550,  padding: 5}}>
+        <Card sx={{ width: 300, maxHeight: 775, minHeight:100}}>
             <CardMedia 
             component={"img"}
             sx={{objectFit: "contain"}}
@@ -44,9 +65,12 @@ export default function FicheAnimaux(props: IFicheAnimal){
                     Nom : {props.animal.nom}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <IconButton size="medium" color="warning" onClick={handleDelete}>
+            <CardActions sx={{objectFit: "contain", display: "flex", justifyContent:"space-between"}}>
+                <IconButton size="medium" color="error" onClick={handleDelete}>
                     <Badge><DeleteIcon fontSize='medium'/></Badge>
+                </IconButton>
+                <IconButton size="medium" color="primary" onClick={handleFavorite}>
+                    <Badge><FavoriteIcon fontSize='medium'/></Badge>
                 </IconButton>
             </CardActions>
         </Card>

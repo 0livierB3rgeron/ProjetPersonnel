@@ -20,6 +20,13 @@ function getAll(): Promise<IAnimal[] |  undefined> {
 }
 
 /**
+ * Get tout les animaux favoris.
+ */
+function getAllFavoris(): Promise<IAnimal[] |  undefined> {
+  return AnimalRepo.GetByFavoris();
+}
+
+/**
  * Get un animal selon son nom.
  */
 function getOne(nom: string): Promise<IAnimal |  undefined> {
@@ -63,6 +70,7 @@ export default {
   getAll,
   addOne,
   updateOne,
+  getAllFavoris,
   getOne,
   delete: _delete,
 } as const;

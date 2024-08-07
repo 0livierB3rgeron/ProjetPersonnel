@@ -16,6 +16,16 @@ async function getAll(_: IReq, res: IRes) {
   return res.status(HttpStatusCodes.OK).json({ animal });
 }
 
+
+/**
+ * Get tout les animaux favoris.
+ */
+async function getAllFavoris(_: IReq, res: IRes) {
+  const animal = await AnimalService.getAllFavoris();
+  return res.status(HttpStatusCodes.OK).json({ animal });
+}
+
+
 /**
  * Get un animal selon son nom
  */
@@ -57,6 +67,7 @@ export default {
   getAll,
   add,
   getOne,
+  getAllFavoris,
   update,
   delete: delete_,
 } as const;

@@ -19,7 +19,7 @@ export default function Formulaire(){
     const [habitat, setHabitat] = useState("");
     const [nourriture, setNourriture] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setimage] = useState();
+    const [image, setImage] = useState("");
     
     const handleSubmit = (e: {preventDefault: () => void;}) =>{
         e.preventDefault();
@@ -36,11 +36,10 @@ export default function Formulaire(){
         })
         .then((response) => {
             
-            console.log('Les données villes sont:', response.data);
+            console.log(response.data);
           })
           .catch((error) => {
-            console.log('')
-            console.error('erreur lors du post:', error);
+            console.error(error);
           });
     };
 
@@ -69,6 +68,8 @@ export default function Formulaire(){
                     <MenuItem value={habitats[4]}>Afrique</MenuItem>
                     <MenuItem value={habitats[5]}>Océanie</MenuItem>
                 </Select>
+                <InputLabel>Image url</InputLabel>
+                <TextField value={image} onChange={(e)=>setImage(e.target.value)} variant='outlined' fullWidth />
               </Grid>
     
               <Grid item xs={12} md={6}>
@@ -82,14 +83,14 @@ export default function Formulaire(){
               </Grid>
     
             </Grid>
-            <Button variant="contained" color="success" type="submit">
+            <Button variant="contained" color="primary" type="submit">
               Submit
             </Button>
           </Paper>
         </form>
         <Link to={{pathname: "/"}}>        
             <IconButton>
-                <Badge sx={{color: "white"}}><ArrowCircleLeftIcon color='success' fontSize='large' /> Retour acceuil</Badge>
+                <Badge sx={{color: "white"}}><ArrowCircleLeftIcon color='primary' fontSize='large' /> Retour aux fiches</Badge>
             </IconButton>
         </Link>
     </>

@@ -14,21 +14,27 @@ import PetsIcon from '@mui/icons-material/Pets';
 export default function Appbar(){
 
     return(
-        <AppBar position="fixed" sx={{backgroundColor: '#4caf50',}}>
+        <AppBar position="fixed" sx={{backgroundColor: "violet"}}>
         <Toolbar sx={{ flexGrow: 1, flexDirection: "row",  alignItems:"center", justifyContent:"space-between", justifyItems:"center"}}>
+            
             <Link to={{pathname: "/formulaire"}}>              
                 <IconButton color="error">
                     <Badge sx={{color:'white'}}><AddBoxIcon color="inherit" fontSize='large'/> Ajouter</Badge>
                 </IconButton>
             </Link>
-            <Link  to={{pathname:"/"}}  >
-            <Badge sx={{color:'white', fontSize:"large"}}><PetsIcon color="inherit" fontSize='large'/> Animaux</Badge>
+
+            <Link to={{pathname:"/acceuil"}} >
+            <IconButton color="error">
+                <Badge sx={{color:'white'}}><PetsIcon color="inherit" fontSize='large'/>Animaux</Badge>    
+            </IconButton>
             </Link>
-            <Link to={{pathname:"/connexion"}}>
+
+            <Link to={{pathname:"/"}}>
                 <IconButton color="error" onClick={logout}>
-                    <Badge sx={{color:'white'}}><Face6Icon fontSize='large'/> Connexion/Deconnexion </Badge>
+                    <Badge sx={{color:'white'}}><Face6Icon fontSize='large'/></Badge>
                 </IconButton>
             </Link>
+
         </Toolbar>
     </AppBar>
     );
