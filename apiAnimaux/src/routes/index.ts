@@ -4,6 +4,7 @@ import jetValidator from 'jet-validator';
 import Paths from '../common/Paths';
 import Animal from '@src/models/Animal';
 import AnimalRoutes from './AnimalRoutes';
+import path from 'path';
 
 
 
@@ -37,6 +38,10 @@ animalRouter.post(
   AnimalRoutes.add,
 );
 
+animalRouter.put(
+  Paths.Update,
+  AnimalRoutes.update
+)
 
 // Delete un animal selon son ID
 animalRouter.delete(

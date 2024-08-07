@@ -9,5 +9,6 @@ export default {
     Get: '/nom/:nom',
     Add: '/add',
     Delete: '/delete/:id',
+    Update: '/favoris'
 
 } as const;

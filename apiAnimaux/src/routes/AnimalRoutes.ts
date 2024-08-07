@@ -34,6 +34,12 @@ async function add(req: IReq<{animal: IAnimal}>, res: IRes) {
   return res.status(HttpStatusCodes.CREATED).end();
 }
 
+/**Ajouter l'animal comme favoris */
+async function update(req: IReq<{animal: IAnimal}>, res: IRes) {
+  const { animal } = req.body;
+  await AnimalService.updateOne(animal);
+  return res.status(HttpStatusCodes.CREATED).end();
+}
 
 /**
  * Delete un animal.
@@ -51,5 +57,6 @@ export default {
   getAll,
   add,
   getOne,
+  update,
   delete: delete_,
 } as const;

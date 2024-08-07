@@ -33,7 +33,8 @@ async function GetById(animalId: number): Promise<IAnimal| undefined> {
 				habitat: result.habitat,
 				nourriture: result.nourriture,
 				image: result.image,
-				description: result.description
+				description: result.description,
+				favoris: result.favoris
 			};
 
 		}
@@ -74,7 +75,8 @@ async function GetByName(animalName: string): Promise<IAnimal| undefined> {
 				habitat: result.habitat,
 				nourriture: result.nourriture,
 				image: result.image,
-				description: result.description
+				description: result.description,
+				favoris: result.favoris
 			};
 
 		}
@@ -116,7 +118,8 @@ async function GetAll(): Promise<IAnimal[]| undefined> {
 					habitat: result.habitat,
 					nourriture: result.nourriture,
 					image: result.image,
-					description: result.description
+					description: result.description,
+					favoris: result.favoris
 				});
 			}));
 			
@@ -135,15 +138,34 @@ async function GetAll(): Promise<IAnimal[]| undefined> {
  * @return le nouvel animal créé
  */
 async function Insert(animal:  IAnimal ): Promise<IAnimal | undefined> {
-	const query =  "INSERT INTO animaux (nom, espece, habitat, nourriture, image, description) VALUES(:nom, :espece, :habitat, :nourriture, :image, :description)";
+	const query =  "INSERT INTO animaux (nom, espece, habitat, nourriture, image, description, favoris) VALUES(:nom, :espece, :habitat, :nourriture, :image, :description, :favoris)";
 	
 	
-	const params = {nom: animal.nom, espece: animal.espece, habitat: animal.habitat, nourriture: animal.nourriture, image: animal.image, description: animal.description};
+	const params = {nom: animal.nom, espece: animal.espece, habitat: animal.habitat, nourriture: animal.nourriture, image: animal.image, description: animal.description, favoris: animal.favoris};
 	try{
 		let [resultat] = await connection.promise().execute<ResultSetHeader>(query, params);
 		
 		if(resultat.affectedRows > 0){
 			return GetById(resultat.insertId);
+		}else{
+			return undefined;
+		}
+	}catch (erreur){
+		throw new Error(erreur.toString());
+	}
+}
+
+
+async function Update(animal:  IAnimal ): Promise<IAnimal | undefined> {
+	const query =  "UPDATE animaux SET favrois = :favrois WHERE nom = :nom";
+	
+	
+	const params = {favoris: animal.favoris, nom: animal.nom};
+	try{
+		let [resultat] = await connection.promise().execute<ResultSetHeader>(query, params);
+		
+		if(resultat.affectedRows > 0){
+			return animal
 		}else{
 			return undefined;
 		}
@@ -160,12 +182,13 @@ async function Delete(animalId: number): Promise<boolean>{
 		return false
 	}
 	
-	const query = "DELETE FROM animaux WHERE id = ?;"
-	const param = {animalId};
-	console.log(param)
+	const query = "DELETE FROM animaux WHERE id = :id;"
+	const param = {id: animalId};
+	
 
 	try{
 		let [resultat] = await connection.promise().execute<ResultSetHeader>(query, param);
+		console.log(resultat);
 		return resultat.affectedRows > 0;
 	}
 	catch(erreur){
@@ -180,6 +203,7 @@ export default {
 	GetById,
 	GetByName,
 	Insert,
-	Delete
+	Delete,
+	Update
 } as const
 

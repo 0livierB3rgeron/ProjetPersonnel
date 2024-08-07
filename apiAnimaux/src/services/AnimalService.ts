@@ -35,6 +35,10 @@ function addOne(animal:  IAnimal): Promise<IAnimal | undefined> {
 }
 
 
+function updateOne(animal:  IAnimal): Promise<IAnimal | undefined> {
+  return AnimalRepo.Update(animal);
+}
+
 /**
  * Delete un animal selon son id.
  */
@@ -58,6 +62,7 @@ async function _delete(id: number): Promise<boolean> {
 export default {
   getAll,
   addOne,
+  updateOne,
   getOne,
   delete: _delete,
 } as const;

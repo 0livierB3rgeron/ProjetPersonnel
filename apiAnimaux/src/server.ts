@@ -19,7 +19,7 @@ import HttpStatusCodes from '@src/common/HttpStatusCodes';
 import RouteError from '@src/common/RouteError';
 import { NodeEnvs } from '@src/common/misc';
 
-
+const cors = require('cors'); 
 // **** Variables **** //
 
 const app = express();
@@ -31,6 +31,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser(EnvVars.CookieProps.Secret));
+app.use(cors()); 
 
 // Show routes called in console during development
 if (EnvVars.NodeEnv === NodeEnvs.Dev.valueOf()) {

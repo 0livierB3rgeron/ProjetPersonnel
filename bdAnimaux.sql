@@ -6,5 +6,12 @@ CREATE TABLE animaux (
     espece VARCHAR(255) NOT NULL,
     habitat VARCHAR(255) NOT NULL,
     nourriture VARCHAR(255) NOT NULL,
-    image VARCHAR(255) NOT NULL
+    image VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    favoris BOOLEAN NOT NULL
+);
+
+CREATE TABLE habitat (
+id INT AUTO_INCREMENT,
+nom VARCHAR(255) NOT NULL
 );
