@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react';
-import {  Unstable_Grid2 as Grid } from '@mui/material';
+import {  Unstable_Grid2 as Grid, IconButton } from '@mui/material';
 import Appbar from './appBar';
 import axios from 'axios';
 import { IAnimal } from '../models/animal';
@@ -22,8 +22,9 @@ export default function Favoris(){
 
     return(
         <>
-        <Appbar/>
+        <Appbar/>        
         <Grid container spacing={5} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', marginTop: 10 }}>
+
             {animaux &&
             animaux.map((animal) => {
                 return (
@@ -32,6 +33,7 @@ export default function Favoris(){
                 </Grid>
                 );
             })}
+
         </Grid>
         </>
     );

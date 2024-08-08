@@ -5,7 +5,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { IAnimal } from '../models/animal';
 import { Badge, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import axios from 'axios';
 
@@ -13,8 +12,6 @@ import axios from 'axios';
 interface IFavorisAnimal{
     animal: IAnimal
 }
-
-
 
 export default function FicheFavoris(props: IFavorisAnimal) {
 
@@ -51,6 +48,9 @@ export default function FicheFavoris(props: IFavorisAnimal) {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {props.animal.description}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {props.animal.habitat}
         </Typography>
       </CardContent>
       <CardActions>

@@ -53,14 +53,14 @@ export default function Formulaire(){
               
               <Grid item xs={12} md={6}>
               <InputLabel >Nom</InputLabel>
-                <TextField value={nom} onChange={(e)=>setNom(e.target.value)} variant="outlined" fullWidth/>                
+                <TextField value={nom} onChange={(e)=>setNom(e.target.value)} variant="outlined" fullWidth required/>                
                 <InputLabel>Espèces</InputLabel>
-                <TextField value={espece} onChange={(e)=>setEspece(e.target.value)} variant='outlined' fullWidth />
+                <TextField value={espece} onChange={(e)=>setEspece(e.target.value)} variant='outlined' fullWidth required/>
               </Grid>
             
               <Grid item xs={12} md={6}>
               <InputLabel>Continent</InputLabel>
-                <Select  label="continent" value={habitat} onChange={(e)=>setHabitat(e.target.value)} fullWidth variant='outlined' placeholder='contienn'>
+                <Select  label="continent" value={habitat} onChange={(e)=>setHabitat(e.target.value)} fullWidth variant='outlined' placeholder='habitat' required>
                     <MenuItem value={habitats[0]}>Amérique du nord</MenuItem>
                     <MenuItem value={habitats[1]}>Amérique du sud</MenuItem>
                     <MenuItem value={habitats[2]}>Europe</MenuItem>
@@ -69,17 +69,17 @@ export default function Formulaire(){
                     <MenuItem value={habitats[5]}>Océanie</MenuItem>
                 </Select>
                 <InputLabel>Image url</InputLabel>
-                <TextField value={image} onChange={(e)=>setImage(e.target.value)} variant='outlined' fullWidth />
+                <TextField value={image} onChange={(e)=>setImage(e.target.value)} variant='outlined' fullWidth required />
               </Grid>
     
               <Grid item xs={12} md={6}>
                 <InputLabel>Nourriture</InputLabel>
-                <TextField value={nourriture} onChange={(e)=>setNourriture(e.target.value)} variant="outlined" fullWidth />
+                <TextField value={nourriture} onChange={(e)=>setNourriture(e.target.value)} variant="outlined" fullWidth required/>
               </Grid>
     
               <Grid item xs={12} md={6}>
                 <InputLabel >Description</InputLabel>
-                <TextField value={description} onChange={(e)=>setDescription(e.target.value)} variant='outlined' fullWidth></TextField>
+                <TextField value={description} onChange={(e)=>setDescription(e.target.value)} variant='outlined' fullWidth required></TextField>
               </Grid>
     
             </Grid>

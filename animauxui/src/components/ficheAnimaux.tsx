@@ -39,10 +39,8 @@ export default function FicheAnimaux(props: IFicheAnimal){
         axios.delete('http://127.0.0.1:3000/animal/delete/' + props.animal.id)
         .then((response) =>{
             if(response.status == 200){
-                
+                window.location.reload();
             }
-
-
         })
         .catch(error =>{
             

@@ -40,9 +40,9 @@ export default function Connexion(){
         return (
           <Grid container justifyContent="center" alignItems="center" >
             <Grid item xs={10} sm={6} md={4} container justifyContent="center" alignItems="center">
-              <Paper elevation={3} style={{ padding: 20 , height: '50vh', width:'100vh', backgroundColor: "white" }} >
+              <Paper elevation={3} style={{ padding: 20 , width:'200vh', backgroundColor: "white" }} >
                 <Typography variant="h5" gutterBottom>
-                  Connexion
+                  Connexion aux animaux
                 </Typography>
                 <form onSubmit={handleSubmit}>
                 <TextField
