@@ -7,7 +7,12 @@ import {  useState } from 'react';
 
 
 
-
+/**
+ * Formulaire d'insertion d'un nouvel animal.
+ * Les champs requis sont le nom, l'espèce, l'habitat, la nourriture, une brève description
+ * et un url d'image
+ * @returns 
+ */
 
 export default function Formulaire(){
 
@@ -29,16 +34,17 @@ export default function Formulaire(){
                 "espece": espece,
                 "habitat": habitat,
                 "nourriture": nourriture,
-                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk1PDAz6WWS34_z9zcR5gcueGXL_3hcC0lPA&s",
+                "image": image,
                 "description": description,
                 "favoris": false
             }
         })
         .then((response) => {
-            
-            console.log(response.data);
+            window.location.reload();
+            window.alert("insertion réussi")
           })
           .catch((error) => {
+            window.alert("erreur avec l'insertion")
             console.error(error);
           });
     };

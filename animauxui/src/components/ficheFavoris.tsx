@@ -13,6 +13,12 @@ interface IFavorisAnimal{
     animal: IAnimal
 }
 
+
+/**
+ * Créer un fiche d'animaux favoris
+ * 
+ */
+
 export default function FicheFavoris(props: IFavorisAnimal) {
 
     const handleFavorite = () =>{

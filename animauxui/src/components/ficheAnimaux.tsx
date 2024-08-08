@@ -11,7 +11,11 @@ interface IFicheAnimal{
 }
 
 
-
+/**
+ * Créer un fiche d'animaux dans laquelle il y a
+ * un bouton pour supprimer et un pour rendre l'animal favoris
+ * 
+ */
 export default function FicheAnimaux(props: IFicheAnimal){
 
    const handleFavorite = () =>{

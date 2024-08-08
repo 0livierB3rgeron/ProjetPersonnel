@@ -15,6 +15,7 @@ export default function Favoris(){
             getAnimaux(response.data.animal)
         })
         .catch((error) =>{
+            window.alert("Aucun animal favoris pour l'intant")
             console.log(error);
         })
     }, []);

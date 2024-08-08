@@ -15,6 +15,7 @@ export default function Acceuil(){
             getAnimaux(response.data.animal)
         })
         .catch((error) =>{
+            window.alert("Aucun animal pour l'intant")
             console.log(error);
         })
     }, []);
